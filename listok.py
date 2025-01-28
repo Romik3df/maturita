@@ -2,7 +2,8 @@ def registrácia():
     user_name = input("zadaj svoje meno: ")
     pass1= input("Zadaj heslo: ")
     pass2 = ("Zadaj heslo znova: ")
-if pass1==pass2:
+
+if "pass1"=="pass2":
     print("ste uspesne zaregistrovany")
 else:
     print("Nie ste uspesne zaregistrovany")
