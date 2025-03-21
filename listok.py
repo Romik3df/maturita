@@ -1,14 +1,45 @@
-def registrácia():
-    user_name = input("zadaj svoje meno: ")
-    pass1= input("Zadaj heslo: ")
-    pass2 = ("Zadaj heslo znova: ")
-
-if "pass1"=="pass2":
-    print("ste uspesne zaregistrovany")
-else:
-    print("Nie ste uspesne zaregistrovany")
 
 import random
+import getpass
+
+#chat gpt
+def registracia():
+    user_name = input("Zadaj svoje meno: ")
+    pass1 = getpass.getpass("Zadaj heslo: ")  # Heslo sa nezobrazuje
+    pass2 = getpass.getpass("Zadaj heslo znova: ")
+
+    if pass1 == pass2:
+        print("Ste úspešne zaregistrovaný")
+        return user_name, "*" * len(pass1)  # Vraciame meno + hviezdičkovú dĺžku hesla
+    else:
+        print("Nie ste úspešne zaregistrovaný")
+        return None, None  # Neúspešná registrácia
+
+
+# Zoznam úspešne registrovaných
+registrovani_pouzivatelia = []
+
+# Spustenie registrácie
+meno, heslo_maskovane = registracia()
+if meno:
+    registrovani_pouzivatelia.append(meno)  # Pridáme meno do zoznamu
+    # Zapíšeme meno a dĺžku hesla (hviezdičky) do súboru
+    with open("registrovani.txt", "a", encoding="utf-8") as file:
+        file.write(f"{meno} - {heslo_maskovane}\n")
+else:
+    exit()  # Ukončíme program, ak registrácia nebola úspešná
+
+# Výpis registrovaných
+print("Registrovaní používatelia:", registrovani_pouzivatelia)
+
+# Výpis obsahu súboru
+print("Používatelia v súbore:")
+with open("registrovani.txt", "r", encoding="utf-8") as file:
+    print(file.read())
+
+
+
+#písane mnou
 c=random. randint(1,8)
 print("Dobrý deň")
 print("Dostal/a si číslo: " + str(c)) 
